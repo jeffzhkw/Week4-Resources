@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject secWeapon;
 
     private WeaponBehavior currWeaponBehavior;
+    private Rigidbody2D playerRb;
    
     void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         {
             currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
         };
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 movingDir = (Vector3.right * horizontalInput + Vector3.up * verticalInput).normalized;
+        //playerRb.AddForce(movingDir * speed);
         transform.Translate(movingDir * speed * Time.deltaTime);
     }
 

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7258ef2c76042e1bbb3d1c2d11c84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   playerHealth: 0
   currWeapon: {fileID: 633832161554643374, guid: 9952aa7acd11f4fbaa6efcb5ccaa2717, type: 3}
   secWeapon: {fileID: 4579796075494967603, guid: 78919d4bc6beb4ac1acb77ad8bd930c6, type: 3}
@@ -125,7 +125,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8828125}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &8735567376792649514
 Rigidbody2D:
