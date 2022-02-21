@@ -11,10 +11,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject currWeapon;
     public GameObject secWeapon;
+    public Camera cam;
 
     private WeaponBehavior currWeaponBehavior;
     private Rigidbody2D playerRb;
-   
+    
+    private Vector2 movement;
+    private Vector2 mousePos;
+
     void Start()
     {
         if (currWeapon.GetComponent<WeaponBehavior>())
@@ -24,12 +28,15 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // Update triggers the movement;
     void Update()
     {
-        
 
-        playerMove();
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //fire currWeapon, checking ammon in WeaponBehavior.cs
@@ -42,6 +49,15 @@ public class PlayerController : MonoBehaviour
             switchWeaopn();
         }
        
+    }
+
+    private void FixedUpdate()
+    {
+        playerRb.MovePosition(playerRb.position + movement * speed * Time.fixedDeltaTime);
+
+        Vector2 lookDir = mousePos - playerRb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x)*Mathf.Rad2Deg;//angle in rad between x axis and the 2D vector;
+        playerRb.rotation = angle;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,16 +75,6 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-    }
-
-
-    private void playerMove()
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 movingDir = (Vector3.right * horizontalInput + Vector3.up * verticalInput).normalized;
-        //playerRb.AddForce(movingDir * speed);
-        transform.Translate(movingDir * speed * Time.deltaTime);
     }
 
     private void switchWeaopn()
