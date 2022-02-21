@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed;
-
     public float playerHealth = 100;
+    public float speed;
 
     public GameObject currWeapon;
     public GameObject secWeapon;
@@ -73,6 +72,7 @@ public class PlayerController : MonoBehaviour
             else if (!secWeapon) setSecWeapon(other.gameObject);  
         } 
     }
+
     //Player pickup weapon
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
             setCurrWeapon(other.gameObject);
         }
     }
+
     //TODO: Player heath manage
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -94,10 +95,7 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-        else if (collision.gameObject.CompareTag("Environment"))
-        {
-            Debug.Log("Wall!!");
-        }
+        
     }
 
     //---Helper method.---//

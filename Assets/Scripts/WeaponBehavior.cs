@@ -38,14 +38,12 @@ public class WeaponBehavior : MonoBehaviour
 
     public bool fire()
     {
-        if (ammoQuan == 0)
-        {
-            Destroy(gameObject);
-        }
+        if (ammoQuan == 0) Destroy(gameObject);
+     
         else if (fireTimer <= 0)
         {
             ammoQuan--;
-            //TODO: Different Weapon behavior: how many bullet
+            //TODO: Different Weapon(bullet spawn) behavior
             switch (weaponType)
             {
                 case 0:
@@ -60,7 +58,7 @@ public class WeaponBehavior : MonoBehaviour
             }
             fireTimer = fireCD;
             return true;
-        }  
+        }
 
         return false;
         

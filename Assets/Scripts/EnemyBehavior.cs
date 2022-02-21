@@ -20,4 +20,35 @@ public class EnemyBehavior : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            int bulletType = collision.gameObject.GetComponent<BulletBehavior>().bulletType;
+            float bulletBaseDamage = collision.gameObject.GetComponent<BulletBehavior>().baseDamage;
+            //TODO: bonus damage
+            switch (enemyType)
+            {
+                case 0:
+                    if (bulletType == 0)
+                    {
+
+                    }
+                    break;
+                case 1:
+                    if (bulletType == 1)
+                    {
+
+                    }
+                    break;
+                case 2:
+                    if (bulletType == 2)
+                    {
+
+                    }
+                    break;
+            }
+        }
+    }
 }
