@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc655790fa248bc8e15b850360ae55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoQuan: 30
+  ammoQuan: 15
   weaponType: 2
   bullet: {fileID: 3355429128833969260, guid: 563522b7d443d4ea89e4976a16dad47e, type: 3}
 --- !u!212 &-1395784415783308928
