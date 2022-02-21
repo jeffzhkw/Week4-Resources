@@ -10,54 +10,60 @@ public class WeaponBehavior : MonoBehaviour
     public int weaponType;
     public GameObject bullet;
 
-    private int fireRate;
+    private float fireCD;
+    private float fireTimer;
 
     void Start()
     {
         switch (weaponType)
         {
             case 0:
-                fireRate = 10; //10 bullets per second
+                fireCD = 0.2f; //5 bullets per second
                 break;
             case 1:
-                fireRate = 5;
+                fireCD = 0.5f;
                 break;
             case 2:
-                fireRate = 1;
+                fireCD = 1;
                 break;
         }
+        fireTimer = fireCD;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        fireTimer -= Time.deltaTime;
     }
 
     public bool fire()
     {
         if (ammoQuan == 0)
         {
-            return false;
+            Destroy(gameObject);
         }
-        else
+        else if (fireTimer <= 0)
         {
             ammoQuan--;
-            //TODO: fireRate;
-            switch (weaponType)//TODO: Different Weapon behavior
+            //TODO: Different Weapon behavior: how many bullet
+            switch (weaponType)
             {
                 case 0:
+                    Instantiate(bullet, transform.position, bullet.transform.rotation);//bullet 0 
                     break;
                 case 1:
+                    Instantiate(bullet, transform.position, bullet.transform.rotation);//bullet 1
                     break;
                 case 2:
+                    Instantiate(bullet, transform.position, bullet.transform.rotation);//bullet 2
                     break;
-                
-
             }
-            Instantiate(bullet, transform.position, bullet.transform.rotation);//bullet
+            fireTimer = fireCD;
             return true;
-        }
+        }  
+
+        return false;
+        
     }
     
 }

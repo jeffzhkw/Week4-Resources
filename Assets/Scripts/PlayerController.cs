@@ -21,36 +21,40 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        if (currWeapon.GetComponent<WeaponBehavior>())
+        if (currWeapon)
         {
             currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
         };
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    // Update triggers the movement;
+    // Update: triggers the movement;
     void Update()
     {
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             //fire currWeapon, checking ammon in WeaponBehavior.cs
-            Debug.Log(currWeaponBehavior.ammoQuan);
-            bool didFire = currWeaponBehavior.fire();
-            
+            if (currWeapon)
+            {
+                Debug.Log("Ammo:" + currWeaponBehavior.ammoQuan);
+                bool didFire = currWeaponBehavior.fire();
+            }
+            else Debug.Log("No weapon on hand");
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            switchWeaopn();
+            if(currWeapon && secWeapon) switchWeapon();
+
+            else Debug.Log("No need to switch");
         }
-       
     }
 
+    //Player movement
     private void FixedUpdate()
     {
         playerRb.MovePosition(playerRb.position + movement * speed * Time.fixedDeltaTime);
@@ -60,30 +64,67 @@ public class PlayerController : MonoBehaviour
         playerRb.rotation = angle;
     }
 
+    //Auto pick up weapon
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        
-        //TODO: PickUp Weapon
-        if (other.gameObject.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.E))
+    {  
+        if (other.gameObject.CompareTag("Weapon"))
         {
-            currWeapon = other.gameObject;
-            currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
-        }
-        
+            if (!currWeapon) setCurrWeapon(other.gameObject);
+            else if (!secWeapon) setSecWeapon(other.gameObject);  
+        } 
     }
-
+    //Player pickup weapon
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.E))//Have both equiped and press E
+        {
+            Debug.Log("Here E");
+            Destroy(currWeapon);//TODO?: drop effect?
+            setCurrWeapon(other.gameObject);
+        }
+    }
+    //TODO: Player heath manage
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if(collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+        }
+        else if (collision.gameObject.CompareTag("Environment"))
+        {
+            Debug.Log("Wall!!");
+        }
     }
 
-    private void switchWeaopn()
+    //---Helper method.---//
+    private void switchWeapon()
     {
-        GameObject temp;
-        temp = currWeapon;
-        currWeapon = secWeapon;
-        secWeapon = currWeapon;
+        GameObject temp = currWeapon;
+        setCurrWeapon(secWeapon);
+        setSecWeapon(temp);   
+    }
+
+    private void setCurrWeapon(GameObject other)
+    {
+        currWeapon = other;
+        other.transform.parent = gameObject.transform.GetChild(0);//attach to player's weapon pos
+        other.transform.localPosition = new Vector3(0, 0, 0);
+        other.transform.localScale = new Vector3(0.8f, 0.8f, 0);
+        other.GetComponent<BoxCollider2D>().enabled = false;
         currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
+    }
+
+    private void setSecWeapon(GameObject other)
+    {
+        secWeapon = other;
+        other.transform.parent = gameObject.transform;//attach to player's pos;
+        other.transform.localPosition = new Vector3(0, 0, -1);
+        other.transform.localScale = new Vector3(0.8f, 0.8f, 0);
+        other.GetComponent<BoxCollider2D>().enabled = false;
     }
     
 }

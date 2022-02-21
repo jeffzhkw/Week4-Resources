@@ -21,6 +21,35 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            int enemyType = collision.gameObject.GetComponent<EnemyBehavior>().enemyType;
+            //TODO: bonus damage
+            switch (bulletType)
+            {
+                case 0:
+                    if(enemyType == 0)
+                    {
+
+                    }
+                    break;
+                case 1:
+                    if (enemyType == 1)
+                    {
+
+                    }
+                    break;
+                case 2:
+                    if (enemyType == 2)
+                    {
+
+                    }
+                    break;
+            }
+        }
+
+        else if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
+
         
     }
 }
