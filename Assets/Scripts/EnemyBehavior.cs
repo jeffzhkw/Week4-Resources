@@ -12,7 +12,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(fireEnemyBullet());
     }
 
     // Update is called once per frame
@@ -21,9 +21,16 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
+    IEnumerator fireEnemyBullet()
+    {
+
+        Debug.Log("Enemy Fire");
+        yield return new WaitForSeconds(1);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             int bulletType = collision.gameObject.GetComponent<BulletBehavior>().bulletType;
             float bulletBaseDamage = collision.gameObject.GetComponent<BulletBehavior>().baseDamage;

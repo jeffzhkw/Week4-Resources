@@ -34,6 +34,7 @@ public class WeaponBehavior : MonoBehaviour
     void Update()
     {
         fireTimer -= Time.deltaTime;
+        
     }
 
     public bool fire()

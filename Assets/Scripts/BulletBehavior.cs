@@ -33,6 +33,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject); 
+        if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Enemy")) Destroy(gameObject);
     }
 }

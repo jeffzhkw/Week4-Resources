@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6133727197347710367}
   - component: {fileID: -5725044549528255714}
+  - component: {fileID: 3869117113504025212}
   - component: {fileID: 5635009491854407210}
-  - component: {fileID: 2176494863082982577}
+  - component: {fileID: 2872596976846806848}
   m_Layer: 0
   m_Name: Enemy Bullet
   m_TagString: EnemyBullet
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &3869117113504025212
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441896932610064081}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &5635009491854407210
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -100,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &2176494863082982577
+--- !u!114 &2872596976846806848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,9 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5441896932610064081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481f5dfb05dc44362a7b3662f9e19acc, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e8ab00b022a14f6288b3aa3b9f148b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  speed: 11
+  speed: 5
   bulletType: -1
