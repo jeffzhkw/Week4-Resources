@@ -33,6 +33,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
         if (collision.gameObject.CompareTag("Player")) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("PlayerBullet")) Destroy(gameObject);
 
         //TODO: Enemy Bullet will pass though enemy.
 
