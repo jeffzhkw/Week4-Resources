@@ -7,10 +7,17 @@ public class BulletBehavior : MonoBehaviour
     public float baseDamage;
     public float speed;
     public int bulletType;
+    Rigidbody2D bulletBody;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletBody = GetComponent<Rigidbody2D>();
+        Vector2 lookDir = PlayerController.mousePos - PlayerController.playerRb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x)*Mathf.Rad2Deg;//angle in rad between x axis and the 2D vector;
+        float bulletForceX = speed* Mathf.Cos(angle*Mathf.PI/180.0f);
+        float bulletForceY = speed * Mathf.Sin(angle*Mathf.PI/180.0f);
+        bulletBody.rotation = angle;
+        bulletBody.AddForce(new Vector2(bulletForceX,bulletForceY));
     }
 
     // Update is called once per frame

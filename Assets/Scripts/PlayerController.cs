@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject currWeapon;
     public GameObject secWeapon;
+    public Text ammoQuanText;
     public Camera cam;
 
     private WeaponBehavior currWeaponBehavior;
-    private Rigidbody2D playerRb;
+    public static Rigidbody2D playerRb;
     
     private Vector2 movement;
-    private Vector2 mousePos;
+    public static Vector2 mousePos;
 
     void Start()
     {
@@ -33,13 +35,18 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        
+        if (currWeapon){
+            ammoQuanText.text = "Ammo:" + currWeaponBehavior.ammoQuan.ToString();
+        }
+        else{
+            ammoQuanText.text = "Ammo: 0";
+        }
         if (Input.GetKey(KeyCode.Space))
         {
             //fire currWeapon, checking ammon in WeaponBehavior.cs
             if (currWeapon)
             {
-                Debug.Log("Ammo:" + currWeaponBehavior.ammoQuan);
+                //Debug.Log("Ammo:" + currWeaponBehavior.ammoQuan);
                 bool didFire = currWeaponBehavior.fire();
             }
             else Debug.Log("No weapon on hand");
@@ -49,6 +56,9 @@ public class PlayerController : MonoBehaviour
         {
             if(currWeapon && secWeapon) switchWeapon();
 
+            else if(!currWeapon && secWeapon){
+                setCurrWeapon(secWeapon);
+            }
             else Debug.Log("No need to switch");
         }
     }
