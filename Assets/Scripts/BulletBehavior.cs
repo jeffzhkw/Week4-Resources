@@ -37,4 +37,5 @@ public class BulletBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) Destroy(gameObject);
         if (collision.gameObject.CompareTag("EnemyBullet")) Destroy(gameObject);
     }
+
 }
