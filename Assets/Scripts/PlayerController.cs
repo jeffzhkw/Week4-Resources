@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float playerHealth = 100;
+    public float staminaVal = 100;
     public float speed;
-
     public GameObject currWeapon;
     public GameObject secWeapon;
     public Text ammoQuanText;
@@ -28,7 +28,14 @@ public class PlayerController : MonoBehaviour
         };
         playerRb = GetComponent<Rigidbody2D>();
     }
-
+    IEnumerator wait3sec()
+    {
+        yield return new WaitForSeconds(3f);
+    }
+    IEnumerator waithalfsec()
+    {
+        yield return new WaitForSeconds(.5f);
+    }
     // Update: triggers the movement;
     void Update()
     {
@@ -41,7 +48,7 @@ public class PlayerController : MonoBehaviour
         else{
             ammoQuanText.text = "Ammo: 0";
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             //fire currWeapon, checking ammon in WeaponBehavior.cs
             if (currWeapon)
@@ -50,6 +57,20 @@ public class PlayerController : MonoBehaviour
                 bool didFire = currWeaponBehavior.fire();
             }
             else Debug.Log("No weapon on hand");
+        }
+        if (Input.GetKey(KeyCode.Space) && staminaVal >= 10)
+        {
+
+            speed = 15;
+            staminaVal -= 10;
+            Stamina.SetStamina(staminaVal/100f);
+            StartCoroutine(wait3sec());
+            speed = 10;
+        }
+        else if (staminaVal < 100) {
+            StartCoroutine(waithalfsec());
+            staminaVal +=.5f;
+            Stamina.SetStamina(staminaVal/100f);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -61,6 +82,7 @@ public class PlayerController : MonoBehaviour
             }
             else Debug.Log("No need to switch");
         }
+        HealthBar.SetHealthBarValue(playerHealth/100f);
     }
 
     //Player movement
@@ -71,6 +93,7 @@ public class PlayerController : MonoBehaviour
         Vector2 lookDir = mousePos - playerRb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x)*Mathf.Rad2Deg;//angle in rad between x axis and the 2D vector;
         playerRb.rotation = angle;
+
     }
 
     //Auto pick up weapon
@@ -88,7 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.E))//Have both equiped and press E
         {
-            Debug.Log("Here E");
+            //Debug.Log("Here E");
             Destroy(currWeapon);//TODO?: drop effect?
             setCurrWeapon(other.gameObject);
         }
