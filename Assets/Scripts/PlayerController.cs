@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public GameObject currWeapon;
     public GameObject secWeapon;
+    public Text healthText;
+    public Text staminaText;
     public Text ammoQuanText;
     public Camera cam;
 
@@ -58,6 +60,8 @@ public class PlayerController : MonoBehaviour
             }
             else Debug.Log("No weapon on hand");
         }
+        healthText.text = "Health: " + playerHealth.ToString();
+        staminaText.text = "Health: " + staminaVal.ToString();
         if (Input.GetKey(KeyCode.Space) && staminaVal >= 10)
         {
 

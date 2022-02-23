@@ -1887,6 +1887,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 2407209793592572866, guid: 46bf0130441e74ee8881939ec8e14f49, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 2119947444}
+    - target: {fileID: 2407209793592572866, guid: 46bf0130441e74ee8881939ec8e14f49, type: 3}
+      propertyPath: staminaText
+      value: 
+      objectReference: {fileID: 332779190}
+    - target: {fileID: 2407209793592572866, guid: 46bf0130441e74ee8881939ec8e14f49, type: 3}
       propertyPath: ammoQuanText
       value: 
       objectReference: {fileID: 48475356}
