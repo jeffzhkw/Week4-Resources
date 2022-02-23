@@ -917,6 +917,7 @@ MonoBehaviour:
   speed: 0.035
   Player: {fileID: 105938284}
   ClosestDistance: 7
+  CirclePlayer: 0
 --- !u!1001 &1013112006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -994,6 +995,7 @@ MonoBehaviour:
   speed: 0.05
   Player: {fileID: 105938284}
   ClosestDistance: 4
+  CirclePlayer: 0.05
 --- !u!1 &1090460855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1335,7 @@ MonoBehaviour:
   speed: 0.04
   Player: {fileID: 105938284}
   ClosestDistance: 6
+  CirclePlayer: 0
 --- !u!1 &1984419446
 GameObject:
   m_ObjectHideFlags: 0
