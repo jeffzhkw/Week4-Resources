@@ -65,9 +65,10 @@ public class PlayerController : MonoBehaviour
             staminaVal -= 10;
             Stamina.SetStamina(staminaVal/100f);
             StartCoroutine(wait3sec());
-            speed = 10;
+            
         }
         else if (staminaVal < 100) {
+            speed = 10;
             StartCoroutine(waithalfsec());
             staminaVal +=.5f;
             Stamina.SetStamina(staminaVal/100f);
