@@ -45,7 +45,7 @@ public class EnemyBehavior : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnRate);
-            BulletBehavior aEBullet = Instantiate(enemyBullet, transform.position + Vector3.right, enemyBullet.transform.rotation).GetComponent<BulletBehavior>();
+            BulletBehavior aEBullet = Instantiate(enemyBullet, transform.position, enemyBullet.transform.rotation).GetComponent<BulletBehavior>();
             aEBullet.FireAt(PlayerController.playerRb.position- new Vector2(transform.position.x, transform.position.y));
         }
     }
