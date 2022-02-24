@@ -32,8 +32,8 @@ public class BulletBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
         if (collision.gameObject.CompareTag("Player") && bulletType == -1) Destroy(gameObject);
         if (collision.gameObject.CompareTag("PlayerBullet") && bulletType == -1) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("Enemy") && bulletType != -1) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("EnemyBullet") && bulletType != -1) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Enemy") && bulletType != -1 && bulletType != 2) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("EnemyBullet") && bulletType != -1 && bulletType != 2) Destroy(gameObject);
 
 
     }

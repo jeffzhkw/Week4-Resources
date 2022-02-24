@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5560739132583713976}
   - component: {fileID: -1972558660139555738}
   - component: {fileID: -424436843539210100}
+  - component: {fileID: -5449915485718889718}
   m_Layer: 0
   m_Name: Bullet 2
   m_TagString: PlayerBullet
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3355429128833969260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 50
-  speed: 10
+  speed: 150
   bulletType: 2
   bulletExplode: {fileID: 2330189833764737961, guid: e0797c9974221403c87ece491cf1a3b2, type: 3}
 --- !u!58 &-5403766986696314552
@@ -131,12 +132,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -4970,3 +4971,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-5449915485718889718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355429128833969260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff2c38266423a4f42811b9790bcb6c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

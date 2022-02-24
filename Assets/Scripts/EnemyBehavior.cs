@@ -15,11 +15,13 @@ public class EnemyBehavior : MonoBehaviour
     public float circlePlayer = 0;  //-1 for clockwise, 0 for none, 1 for anticlockwise
     public ParticleSystem explode;
     private GameObject playerObj;
+    private SpriteRenderer enemySp;
 
     void Start()
     {
         playerObj = GameObject.Find("Player");
         StartCoroutine(fireEnemyBullet());
+        enemySp = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            
             int bulletType = collision.gameObject.GetComponent<BulletBehavior>().bulletType;
             float bulletBaseDamage = collision.gameObject.GetComponent<BulletBehavior>().baseDamage;
             //TODO: bonus damage
@@ -63,22 +66,28 @@ public class EnemyBehavior : MonoBehaviour
                     if (bulletType == 0)
                     {
                         health -= bulletBaseDamage*1.5f;
+                        StartCoroutine(FlashRed(enemySp));
                     }
                     health -= bulletBaseDamage;
+                    StartCoroutine(FlashWhite(enemySp));
                     break;
                 case 1:
                     if (bulletType == 1)
                     {
                         health -= bulletBaseDamage * 1.5f;
+                        StartCoroutine(FlashRed(enemySp));
                     }
                     health -= bulletBaseDamage;
+                    StartCoroutine(FlashWhite(enemySp));
                     break;
                 case 2:
                     if (bulletType == 2)
                     {
                         health -= bulletBaseDamage * 1.5f;
+                        StartCoroutine(FlashRed(enemySp));
                     }
                     health -= bulletBaseDamage;
+                    StartCoroutine(FlashWhite(enemySp));
                     break;
             }
         }
@@ -87,6 +96,22 @@ public class EnemyBehavior : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(explode, transform.position, explode.transform.rotation);
+    }
+
+    IEnumerator FlashRed(SpriteRenderer aSprite)
+    {
+        Color pre = aSprite.color;
+        aSprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        aSprite.color = pre;
+    }
+
+    IEnumerator FlashWhite(SpriteRenderer aSprite)
+    {
+        Color pre = aSprite.color;
+        aSprite.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        aSprite.color = pre;
     }
 
 }
