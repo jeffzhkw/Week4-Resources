@@ -32,6 +32,7 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         if (health <= 0) {
+            PlayerController.score += 10;
             EnemySystem.enemyCount -= 1;
             Destroy(gameObject);
         }

@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public float playerHealth = 100;
     public float staminaVal = 100;
     public float speed;
+    public static float score;
     public GameObject currWeapon = null;
     public GameObject secWeapon = null;
     public Text healthText;
+    public Text scoreText;
     public Text staminaText;
     public Text ammoQuanText;
     public Camera cam;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        score = 0;
         if (currWeapon)
         {
             currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
@@ -62,8 +65,10 @@ public class PlayerController : MonoBehaviour
             }
             else Debug.Log("No weapon on hand");
         }
+        
+        scoreText.text = "Score: " + score.ToString();
         healthText.text = "Health: " + playerHealth.ToString();
-        staminaText.text = "Health: " + staminaVal.ToString();
+        staminaText.text = "Stamina: " + staminaVal.ToString();
         if (Input.GetKey(KeyCode.Space) && staminaVal >= 10)
         {
             speed = 15;
