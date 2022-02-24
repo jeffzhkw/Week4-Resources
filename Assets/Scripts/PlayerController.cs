@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour
     // Update: triggers the movement;
     void Update()
     {
+        if(playerHealth <= 0){
+            SceneManager.LoadScene("Game Over");
+        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
