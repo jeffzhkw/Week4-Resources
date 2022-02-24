@@ -33,6 +33,11 @@ public class EnemyBehavior : MonoBehaviour
             transform.position += Vector3.Cross(Vector3.forward, dirToPlayer) * circlePlayer * speed*Time.deltaTime;      
         else
             transform.position += dirToPlayer * speed * Time.deltaTime;
+
+
+        Vector2 lookDir = PlayerController.playerRb.position - new Vector2(transform.position.x, transform.position.y);
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;//angle in rad between x axis and the 2D vector;
+        transform.rotation = transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     IEnumerator fireEnemyBullet()
