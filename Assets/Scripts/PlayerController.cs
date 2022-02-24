@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
     //Player pickup weapon
     private void OnTriggerStay2D(Collider2D other)
     {
+        //TODO: can pickup animation?
         if (other.gameObject.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.E))//Have both equiped and press E
         {
             //Debug.Log("Here E");
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("EnemyBullet"))
         {
-            
+            playerHealth -= collision.gameObject.GetComponent<BulletBehavior>().baseDamage;
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {

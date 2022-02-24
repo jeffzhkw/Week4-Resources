@@ -128,10 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7258ef2c76042e1bbb3d1c2d11c84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   playerHealth: 100
+  staminaVal: 100
+  speed: 10
   currWeapon: {fileID: 0}
   secWeapon: {fileID: 0}
+  healthText: {fileID: 0}
+  staminaText: {fileID: 0}
+  ammoQuanText: {fileID: 0}
   cam: {fileID: 0}
 --- !u!58 &1481561865092491629
 CircleCollider2D:

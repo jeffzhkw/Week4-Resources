@@ -8,6 +8,7 @@ public class BulletBehavior : MonoBehaviour
     public float speed;
     public int bulletType;
     private Rigidbody2D bulletBody;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,9 @@ public class BulletBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
         if (collision.gameObject.CompareTag("Enemy")) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("PlayerBullet")) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("PlayerBullet") && bulletType == -1) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player") && bulletType == -1) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("EnemyBullet") && bulletType != -1) Destroy(gameObject);
     }
 
     public void FireAt(Vector3 lookDir)
@@ -41,6 +44,7 @@ public class BulletBehavior : MonoBehaviour
         bulletBody.rotation = angle;
         bulletBody.AddForce(new Vector2(bulletForceX, bulletForceY), ForceMode2D.Impulse);
     }
+
     
 
 }

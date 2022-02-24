@@ -25,18 +25,14 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (health <= 0) Destroy(gameObject);
+        if (health <= 0) Destroy(gameObject);
 
-       Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
-
-        if ((playerObj.transform.position - transform.position).magnitude < closestDistance)
-        {
-            transform.position += Vector3.Cross(Vector3.forward, dirToPlayer) * circlePlayer * speed*Time.deltaTime;
-            return;
-        }
-        //Debug.Log(playerObj.transform.position.magnitude - transform.position.magnitude);
-        transform.position += dirToPlayer * speed * Time.deltaTime;
-
+        Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
+        float disToPlayer = (playerObj.transform.position - transform.position).magnitude;
+        if (disToPlayer < closestDistance)
+            transform.position += Vector3.Cross(Vector3.forward, dirToPlayer) * circlePlayer * speed*Time.deltaTime;      
+        else
+            transform.position += dirToPlayer * speed * Time.deltaTime;
     }
 
     IEnumerator fireEnemyBullet()
@@ -44,7 +40,7 @@ public class EnemyBehavior : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnRate);
-            BulletBehavior aEBullet = Instantiate(enemyBullet, transform.position + Vector3.right, enemyBullet.transform.rotation).GetComponent<BulletBehavior>();
+            BulletBehavior aEBullet = Instantiate(enemyBullet, transform.position, enemyBullet.transform.rotation).GetComponent<BulletBehavior>();
             aEBullet.FireAt(PlayerController.playerRb.position- new Vector2(transform.position.x, transform.position.y));
         }
     }
