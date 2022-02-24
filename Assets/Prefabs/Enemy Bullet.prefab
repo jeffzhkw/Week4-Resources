@@ -137,3 +137,4 @@ MonoBehaviour:
   baseDamage: 10
   speed: 10
   bulletType: -1
+  bulletExplode: {fileID: 4970659288985128972, guid: 57b60f346f5bb42c1a2d28b0964c9a08, type: 3}

@@ -25,14 +25,8 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-         
-            Destroy(gameObject);
-            Instantiate(explode, transform.position, explode.transform.rotation);
-            
-        }
-
+        if (health <= 0) Destroy(gameObject);
+        
         Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
         float disToPlayer = (playerObj.transform.position - transform.position).magnitude;
         if (disToPlayer < closestDistance)
@@ -90,5 +84,9 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    
+    private void OnDestroy()
+    {
+        Instantiate(explode, transform.position, explode.transform.rotation);
+    }
+
 }

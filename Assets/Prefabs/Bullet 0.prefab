@@ -100,7 +100,7 @@ MonoBehaviour:
   baseDamage: 10
   speed: 50
   bulletType: 0
-  explode: {fileID: 2573923293818802166, guid: 1ca32188dccb544de83fc2981533df28, type: 3}
+  bulletExplode: {fileID: 2330189833764737961, guid: e0797c9974221403c87ece491cf1a3b2, type: 3}
 --- !u!58 &5049126874831602612
 CircleCollider2D:
   m_ObjectHideFlags: 0

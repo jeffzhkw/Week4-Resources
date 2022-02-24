@@ -8,6 +8,7 @@ public class BulletBehavior : MonoBehaviour
     public float speed;
     public int bulletType;
     private Rigidbody2D bulletBody;
+    public ParticleSystem bulletExplode;
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,10 @@ public class BulletBehavior : MonoBehaviour
         bulletBody.AddForce(new Vector2(bulletForceX, bulletForceY), ForceMode2D.Impulse);
     }
 
-    
+    private void OnDestroy()
+    {
+        //bulletExplode.Play();
+        Instantiate(bulletExplode, transform.position, transform.rotation * Quaternion.Euler(0,0,-90));
+    }
 
 }
