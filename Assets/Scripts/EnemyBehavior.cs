@@ -9,26 +9,41 @@ public class EnemyBehavior : MonoBehaviour
     public float speed;
     public float spawnRate = 1;
     public int enemyType;
-
     public GameObject enemyBullet;
+
+    public float closestDistance = 4f;
+    public float circlePlayer = 0;  //-1 for clockwise, 0 for none, 1 for anticlockwise
+
+    private GameObject playerObj;
+
     void Start()
     {
+        playerObj = GameObject.Find("Player");
         StartCoroutine(fireEnemyBullet());
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+       if (health <= 0) Destroy(gameObject);
+
+       Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
+
+        if ((playerObj.transform.position - transform.position).magnitude < closestDistance)
+        {
+            transform.position += Vector3.Cross(Vector3.forward, dirToPlayer) * circlePlayer * speed*Time.deltaTime;
+            return;
+        }
+        //Debug.Log(playerObj.transform.position.magnitude - transform.position.magnitude);
+        transform.position += dirToPlayer * speed * Time.deltaTime;
+
     }
 
     IEnumerator fireEnemyBullet()
     {
-        
         while (true)
         {
             yield return new WaitForSeconds(spawnRate);
-            
             Instantiate(enemyBullet, transform.position + Vector3.right, enemyBullet.transform.rotation);
         }
     }
@@ -45,20 +60,23 @@ public class EnemyBehavior : MonoBehaviour
                 case 0:
                     if (bulletType == 0)
                     {
-
+                        health -= bulletBaseDamage*1.5f;
                     }
+                    health -= bulletBaseDamage;
                     break;
                 case 1:
                     if (bulletType == 1)
                     {
-
+                        health -= bulletBaseDamage * 1.5f;
                     }
+                    health -= bulletBaseDamage;
                     break;
                 case 2:
                     if (bulletType == 2)
                     {
-
+                        health -= bulletBaseDamage * 1.5f;
                     }
+                    health -= bulletBaseDamage;
                     break;
             }
         }
