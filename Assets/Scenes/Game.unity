@@ -413,6 +413,7 @@ MonoBehaviour:
   Enemy2: {fileID: 6310339759394830652, guid: fde902ca2eb8e4a1a86e4bab2fd35e44, type: 3}
   xpos: 0
   ypos: 0
+  timeBetweenWaves: 3
 --- !u!1 &507898496
 GameObject:
   m_ObjectHideFlags: 0
