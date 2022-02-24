@@ -8,7 +8,7 @@ public class EnemySystem : MonoBehaviour
     public GameObject Enemy0,Enemy1,Enemy2;
     public int xpos;
     public int ypos;
-    public int enemyCount;
+    public static int enemyCount;
     void Start()
     {
         StartWave();
@@ -17,7 +17,7 @@ public class EnemySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        EnemyCreate();
     }
 
     void StartWave() {

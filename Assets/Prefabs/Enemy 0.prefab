@@ -50,6 +50,7 @@ MonoBehaviour:
   spawnRate: 1
   enemyType: 0
   enemyBullet: {fileID: 5441896932610064081, guid: 60cb1a82477b24883ab0356055da15c3, type: 3}
+  weaponToBeDroppedOnDeath: {fileID: 633832161554643374, guid: 9952aa7acd11f4fbaa6efcb5ccaa2717, type: 3}
   closestDistance: 4
   circlePlayer: 0
   explode: {fileID: 2573923293818802166, guid: 1ca32188dccb544de83fc2981533df28, type: 3}
