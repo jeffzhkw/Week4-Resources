@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public float playerHealth = 100;
     public float staminaVal = 100;
     public float speed;
-    public GameObject currWeapon;
-    public GameObject secWeapon;
+    public GameObject currWeapon = null;
+    public GameObject secWeapon = null;
     public Text healthText;
     public Text staminaText;
     public Text ammoQuanText;
@@ -59,12 +59,10 @@ public class PlayerController : MonoBehaviour
         staminaText.text = "Health: " + staminaVal.ToString();
         if (Input.GetKey(KeyCode.Space) && staminaVal >= 10)
         {
-
             speed = 15;
             staminaVal -= 10;
             Stamina.SetStamina(staminaVal/100f);
-            StartCoroutine(wait3sec());
-            
+            StartCoroutine(wait3sec());        
         }
         else if (staminaVal < 100) {
             speed = 10;
@@ -79,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
             else if(!currWeapon && secWeapon){
                 setCurrWeapon(secWeapon);
+                secWeapon = null;
             }
             else Debug.Log("No need to switch");
         }
@@ -112,7 +111,7 @@ public class PlayerController : MonoBehaviour
         //TODO: can pickup animation?
         if (other.gameObject.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.E))//Have both equiped and press E
         {
-            //Debug.Log("Here E");
+            
             Destroy(currWeapon);//TODO?: drop effect?
             setCurrWeapon(other.gameObject);
         }
@@ -135,9 +134,12 @@ public class PlayerController : MonoBehaviour
     //---Helper method.---//
     private void switchWeapon()
     {
+        
         GameObject temp = currWeapon;
         setCurrWeapon(secWeapon);
-        setSecWeapon(temp);   
+        setSecWeapon(temp);
+        
+        
     }
 
     private void setCurrWeapon(GameObject other)
