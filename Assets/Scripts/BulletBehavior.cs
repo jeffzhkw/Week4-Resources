@@ -29,7 +29,7 @@ public class BulletBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
         if (collision.gameObject.CompareTag("Enemy")) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("EnemyBullet")) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("PlayerBullet")) Destroy(gameObject);
     }
 
     public void FireAt(Vector3 lookDir)
@@ -39,7 +39,7 @@ public class BulletBehavior : MonoBehaviour
         float bulletForceX = speed * Mathf.Cos(angle * Mathf.PI / 180.0f);
         float bulletForceY = speed * Mathf.Sin(angle * Mathf.PI / 180.0f);
         bulletBody.rotation = angle;
-        bulletBody.AddForce(new Vector2(bulletForceX, bulletForceY));
+        bulletBody.AddForce(new Vector2(bulletForceX, bulletForceY), ForceMode2D.Impulse);
     }
     
 

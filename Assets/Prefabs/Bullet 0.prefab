@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
-  speed: 2000
+  speed: 10
   bulletType: 0
 --- !u!58 &5049126874831602612
 CircleCollider2D:

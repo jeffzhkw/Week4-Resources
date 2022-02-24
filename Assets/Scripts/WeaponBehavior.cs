@@ -37,29 +37,29 @@ public class WeaponBehavior : MonoBehaviour
         
     }
 
-    public bool fire()
+    public bool Fire()
     {
         if (ammoQuan == 0) Destroy(gameObject);
      
         else if (fireTimer <= 0)
         {
             ammoQuan--;
-            Vector2 lookDir = PlayerController.mousePos - PlayerController.playerRb.position;
+            Vector2 fireDir = PlayerController.mousePos - PlayerController.playerRb.position;
             //TODO: Different Weapon(bullet spawn) behavior
             switch (weaponType)
             {
                 case 0://rifle
                     BulletBehavior a0Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 0
                     //TODO: refactor to
-                    a0Bullet.FireAt(lookDir);
+                    a0Bullet.FireAt(fireDir);
                     break;
                 case 1://shotgun
                     BulletBehavior a1Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 1
-                    a1Bullet.FireAt(lookDir);
+                    a1Bullet.FireAt(fireDir);
                     break;
                 case 2://grenade launcher
                     BulletBehavior a2Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 2
-                    a2Bullet.FireAt(lookDir);
+                    a2Bullet.FireAt(fireDir);
                     break;
             }
             fireTimer = fireCD;

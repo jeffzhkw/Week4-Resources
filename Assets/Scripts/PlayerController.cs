@@ -30,14 +30,9 @@ public class PlayerController : MonoBehaviour
         };
         playerRb = GetComponent<Rigidbody2D>();
     }
-    IEnumerator wait3sec()
-    {
-        yield return new WaitForSeconds(3f);
-    }
-    IEnumerator waithalfsec()
-    {
-        yield return new WaitForSeconds(.5f);
-    }
+   
+
+
     // Update: triggers the movement;
     void Update()
     {
@@ -50,13 +45,13 @@ public class PlayerController : MonoBehaviour
         else{
             ammoQuanText.text = "Ammo: 0";
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             //fire currWeapon, checking ammon in WeaponBehavior.cs
             if (currWeapon)
             {
                 //Debug.Log("Ammo:" + currWeaponBehavior.ammoQuan);
-                bool didFire = currWeaponBehavior.fire();
+                bool didFire = currWeaponBehavior.Fire();
             }
             else Debug.Log("No weapon on hand");
         }
@@ -162,5 +157,16 @@ public class PlayerController : MonoBehaviour
         other.transform.localScale = new Vector3(0.8f, 0.8f, 0);
         other.GetComponent<BoxCollider2D>().enabled = false;
     }
-    
+
+    IEnumerator wait3sec()
+    {
+        yield return new WaitForSeconds(3f);
+    }
+
+    IEnumerator waithalfsec()
+    {
+        yield return new WaitForSeconds(.5f);
+    }
+
+
 }
