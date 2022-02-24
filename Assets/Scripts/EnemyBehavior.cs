@@ -20,6 +20,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private Color pre;
 
+    public AudioSource regularHit;
+    public AudioSource bounsHit;
+
     void Start()
     {
         playerObj = GameObject.Find("Player");
@@ -74,27 +77,43 @@ public class EnemyBehavior : MonoBehaviour
                     {
                         health -= bulletBaseDamage*1.5f;
                         StartCoroutine(FlashRed(enemySp));
+                        bounsHit.Play();
                     }
-                    health -= bulletBaseDamage;
-                    StartCoroutine(FlashWhite(enemySp));
+                    else
+                    {
+                        health -= bulletBaseDamage;
+                        StartCoroutine(FlashWhite(enemySp));
+                        regularHit.Play();
+                    }
+                   
                     break;
                 case 1:
                     if (bulletType == 1)
                     {
                         health -= bulletBaseDamage * 1.5f;
                         StartCoroutine(FlashRed(enemySp));
+                        bounsHit.Play();
                     }
-                    health -= bulletBaseDamage;
-                    StartCoroutine(FlashWhite(enemySp));
+                    else
+                    {
+                        health -= bulletBaseDamage;
+                        StartCoroutine(FlashWhite(enemySp));
+                        regularHit.Play();
+                    }
                     break;
                 case 2:
                     if (bulletType == 2)
                     {
                         health -= bulletBaseDamage * 1.5f;
                         StartCoroutine(FlashRed(enemySp));
+                        bounsHit.Play();
                     }
-                    health -= bulletBaseDamage;
-                    StartCoroutine(FlashWhite(enemySp));
+                    else
+                    {
+                        health -= bulletBaseDamage;
+                        StartCoroutine(FlashWhite(enemySp));
+                        regularHit.Play();
+                    }
                     break;
             }
         }
@@ -108,7 +127,6 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator FlashRed(SpriteRenderer aSprite)
     {
-        Color pre = aSprite.color;
         aSprite.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         aSprite.color = pre;

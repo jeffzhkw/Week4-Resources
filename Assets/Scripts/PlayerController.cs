@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public static Vector2 mousePos;
 
     private SpriteRenderer playerSp;
+    private AudioSource sprintAudio;
+    public AudioSource playerHurt;
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         };
         playerRb = GetComponent<Rigidbody2D>();
         playerSp = GetComponent<SpriteRenderer>();
+        sprintAudio = GetComponent<AudioSource>();
     }
    
 
@@ -71,7 +74,8 @@ public class PlayerController : MonoBehaviour
         staminaText.text = "Stamina: " + staminaVal.ToString();
         if (Input.GetKey(KeyCode.Space) && staminaVal >= 10)
         {
-            speed = 15;
+            speed = 30;
+            sprintAudio.Play();
             staminaVal -= 10;
             Stamina.SetStamina(staminaVal/100f);
             StartCoroutine(wait3sec());        
@@ -136,12 +140,14 @@ public class PlayerController : MonoBehaviour
         {
             playerHealth -= collision.gameObject.GetComponent<BulletBehavior>().baseDamage;
             StartCoroutine(FlashRed(playerSp));
+            playerHurt.Play();
            
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             playerHealth -= 10;
             StartCoroutine(FlashRed(playerSp));
+            playerHurt.Play();
         }
         
     }
@@ -157,6 +163,7 @@ public class PlayerController : MonoBehaviour
     private void setCurrWeapon(GameObject other)
     {
         currWeapon = other;
+        other.GetComponent<WeaponBehavior>().PlayPickUp();
         other.transform.parent = gameObject.transform.GetChild(0);//attach to player's weapon pos
         other.transform.localPosition = new Vector3(0, 0, 0);
         other.transform.localScale = new Vector3(0.8f, 0.8f, 0);

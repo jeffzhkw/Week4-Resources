@@ -12,7 +12,10 @@ public class WeaponBehavior : MonoBehaviour
 
     private float fireCD;
     private float fireTimer;
+    private AudioSource audio;
 
+    public AudioSource pickUpAudio;
+    
     void Start()
     {
         switch (weaponType)
@@ -28,6 +31,7 @@ public class WeaponBehavior : MonoBehaviour
                 break;
         }
         fireTimer = fireCD;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +48,7 @@ public class WeaponBehavior : MonoBehaviour
         else if (fireTimer <= 0)
         {
             ammoQuan--;
+            audio.Play();
             Vector3 fireDir = PlayerController.mousePos - PlayerController.playerRb.position;
             //TODO: Different Weapon(bullet spawn) behavior
             switch (weaponType)
@@ -57,7 +62,8 @@ public class WeaponBehavior : MonoBehaviour
                     for(int i = 0; i < 5; i++)
                     {
                         BulletBehavior a1Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 1
-                        a1Bullet.FireAt(Quaternion.Euler(0,0,(20*(i-2))) * fireDir);
+                        //bullet.transform.Rotate(new Vector3(0, 0, (20 * (i - 2))));
+                        a1Bullet.FireAt(Quaternion.Euler(0, 0, (20f * (i - 2))) * fireDir.normalized);
                     }
                     
                     break;
@@ -74,7 +80,10 @@ public class WeaponBehavior : MonoBehaviour
         
     }
 
-
+    public void PlayPickUp()
+    {
+        pickUpAudio.Play();
+    }
     
 
     
