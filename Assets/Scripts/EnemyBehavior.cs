@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     public float spawnRate = 1;
     public int enemyType;
     public GameObject enemyBullet;
+    public GameObject weaponToBeDroppedOnDeath;
 
     public float closestDistance = 4f;
     public float circlePlayer = 0;  //-1 for clockwise, 0 for none, 1 for anticlockwise
@@ -99,6 +100,7 @@ public class EnemyBehavior : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(explode, transform.position, explode.transform.rotation);
+        Instantiate(weaponToBeDroppedOnDeath, transform.position, weaponToBeDroppedOnDeath.transform.rotation);
     }
 
     IEnumerator FlashRed(SpriteRenderer aSprite)
