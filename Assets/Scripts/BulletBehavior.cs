@@ -29,10 +29,12 @@ public class BulletBehavior : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Environment")) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("Enemy")) Destroy(gameObject);
-        if (collision.gameObject.CompareTag("PlayerBullet") && bulletType == -1) Destroy(gameObject);
         if (collision.gameObject.CompareTag("Player") && bulletType == -1) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("PlayerBullet") && bulletType == -1) Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Enemy") && bulletType != -1) Destroy(gameObject);
         if (collision.gameObject.CompareTag("EnemyBullet") && bulletType != -1) Destroy(gameObject);
+
+
     }
 
     public void FireAt(Vector3 lookDir)
