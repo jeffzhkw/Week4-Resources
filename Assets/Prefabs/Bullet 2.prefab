@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 50
-  speed: 150
+  speed: 300
   bulletType: 2
   bulletExplode: {fileID: 2330189833764737961, guid: e0797c9974221403c87ece491cf1a3b2, type: 3}
 --- !u!58 &-5403766986696314552
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

@@ -17,11 +17,14 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject playerObj;
     private SpriteRenderer enemySp;
 
+    private Color pre;
+
     void Start()
     {
         playerObj = GameObject.Find("Player");
         StartCoroutine(fireEnemyBullet());
         enemySp = GetComponent<SpriteRenderer>();
+        pre = enemySp.color;
     }
 
     // Update is called once per frame
@@ -108,7 +111,6 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator FlashWhite(SpriteRenderer aSprite)
     {
-        Color pre = aSprite.color;
         aSprite.color = Color.white;
         yield return new WaitForSeconds(0.1f);
         aSprite.color = pre;

@@ -44,7 +44,7 @@ public class WeaponBehavior : MonoBehaviour
         else if (fireTimer <= 0)
         {
             ammoQuan--;
-            Vector2 fireDir = PlayerController.mousePos - PlayerController.playerRb.position;
+            Vector3 fireDir = PlayerController.mousePos - PlayerController.playerRb.position;
             //TODO: Different Weapon(bullet spawn) behavior
             switch (weaponType)
             {
@@ -54,8 +54,12 @@ public class WeaponBehavior : MonoBehaviour
                     a0Bullet.FireAt(fireDir);
                     break;
                 case 1://shotgun
-                    BulletBehavior a1Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 1
-                    a1Bullet.FireAt(fireDir);
+                    for(int i = 0; i < 5; i++)
+                    {
+                        BulletBehavior a1Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 1
+                        a1Bullet.FireAt(Quaternion.Euler(0,0,(20*(i-2))) * fireDir);
+                    }
+                    
                     break;
                 case 2://grenade launcher
                     BulletBehavior a2Bullet = Instantiate(bullet, transform.position, bullet.transform.rotation).GetComponent<BulletBehavior>();//bullet 2
@@ -69,6 +73,7 @@ public class WeaponBehavior : MonoBehaviour
         return false;
         
     }
+
 
     
 
