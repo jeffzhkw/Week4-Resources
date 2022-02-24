@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
     public static Vector2 mousePos;
 
+    private SpriteRenderer playerSp;
+
     void Start()
     {
         if (currWeapon)
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
             currWeaponBehavior = currWeapon.GetComponent<WeaponBehavior>();
         };
         playerRb = GetComponent<Rigidbody2D>();
+        playerSp = GetComponent<SpriteRenderer>();
     }
    
 
@@ -123,23 +126,23 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("EnemyBullet"))
         {
             playerHealth -= collision.gameObject.GetComponent<BulletBehavior>().baseDamage;
+            StartCoroutine(FlashRed(playerSp));
+           
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-
+            playerHealth -= 10;
+            StartCoroutine(FlashRed(playerSp));
         }
         
     }
 
     //---Helper method.---//
     private void switchWeapon()
-    {
-        
+    { 
         GameObject temp = currWeapon;
         setCurrWeapon(secWeapon);
         setSecWeapon(temp);
-        
-        
     }
 
     private void setCurrWeapon(GameObject other)
@@ -171,5 +174,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.5f);
     }
 
+    IEnumerator FlashRed(SpriteRenderer aSprite)
+    {
+        aSprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        aSprite.color = Color.white;
+    }
 
 }
