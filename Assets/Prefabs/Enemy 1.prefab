@@ -52,6 +52,7 @@ MonoBehaviour:
   enemyBullet: {fileID: 5441896932610064081, guid: 60cb1a82477b24883ab0356055da15c3, type: 3}
   closestDistance: 6
   circlePlayer: -1
+  explode: {fileID: 4955611825513866687, guid: 0b5b2ecb6c736497090043bbcc997f59, type: 3}
 --- !u!212 &-5671726175112179185
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public float closestDistance = 4f;
     public float circlePlayer = 0;  //-1 for clockwise, 0 for none, 1 for anticlockwise
-
+    public ParticleSystem explode;
     private GameObject playerObj;
 
     void Start()
@@ -25,7 +25,13 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+         
+            Destroy(gameObject);
+            Instantiate(explode, transform.position, explode.transform.rotation);
+            
+        }
 
         Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
         float disToPlayer = (playerObj.transform.position - transform.position).magnitude;
@@ -83,4 +89,6 @@ public class EnemyBehavior : MonoBehaviour
             }
         }
     }
+
+    
 }
