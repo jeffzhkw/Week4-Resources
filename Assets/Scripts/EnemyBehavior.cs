@@ -31,8 +31,10 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0) Destroy(gameObject);
-        
+        if (health <= 0) {
+            EnemySystem.enemyCount -= 1;
+            Destroy(gameObject);
+        }
         Vector3 dirToPlayer = (playerObj.transform.position - transform.position).normalized;
         float disToPlayer = (playerObj.transform.position - transform.position).magnitude;
         if (disToPlayer < closestDistance)
