@@ -81,7 +81,7 @@ public class EnemyBehavior : MonoBehaviour
                     }
                     else
                     {
-                        health -= bulletBaseDamage;
+                        health -= bulletBaseDamage * 0.8f;
                         StartCoroutine(FlashWhite(enemySp));
                         regularHit.Play();
                     }
@@ -96,7 +96,7 @@ public class EnemyBehavior : MonoBehaviour
                     }
                     else
                     {
-                        health -= bulletBaseDamage;
+                        health -= bulletBaseDamage * 0.8f;
                         StartCoroutine(FlashWhite(enemySp));
                         regularHit.Play();
                     }
@@ -110,7 +110,7 @@ public class EnemyBehavior : MonoBehaviour
                     }
                     else
                     {
-                        health -= bulletBaseDamage;
+                        health -= bulletBaseDamage * 0.8f;
                         StartCoroutine(FlashWhite(enemySp));
                         regularHit.Play();
                     }
@@ -122,7 +122,11 @@ public class EnemyBehavior : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(explode, transform.position, explode.transform.rotation);
-        Instantiate(weaponToBeDroppedOnDeath, transform.position, weaponToBeDroppedOnDeath.transform.rotation);
+        if( Random.Range(1,100) < 70)
+        {
+            Instantiate(weaponToBeDroppedOnDeath, transform.position, weaponToBeDroppedOnDeath.transform.rotation);
+        }
+        
     }
 
     IEnumerator FlashRed(SpriteRenderer aSprite)

@@ -28,6 +28,7 @@ public class EnemySystem : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             if(timeRemaining < 0){
                 waveNumber +=1;
+                waveNumber = waveNumber % 3;
                 StartWave(waveNumber);
                 timeRemaining = timeBetweenWaves;
             }
